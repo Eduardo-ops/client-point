@@ -1,36 +1,32 @@
 package com.api.clientpoint.Model;
 
-import java.time.LocalDateTime;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import org.springframework.boot.SpringApplication;
-
-import com.api.clientpoint.ClientPointApplication;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
 
 @Entity
 @Data
-public class Customer {
+public class Service {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@Column(nullable = false, length = 150)
-	private String name;
+	private String description;
 
-	@Column(nullable = false, length = 11)
-	private String cpf;
+	@ManyToOne
+	@JoinColumn(name = "id_customer")
+	private Customer customer;
 
-	@Column(name = "register_date")
-	private LocalDateTime registerDate;
-
+	@Column()
+	private BigDecimal price;
 }
