@@ -1,5 +1,6 @@
 package com.api.clientpoint.Model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -7,17 +8,16 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 
-import org.springframework.boot.SpringApplication;
-
-import com.api.clientpoint.ClientPointApplication;
-
+import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Customer {
 
 	@Id
@@ -32,5 +32,10 @@ public class Customer {
 
 	@Column(name = "register_date")
 	private LocalDateTime registerDate;
+
+	@PrePersist
+	public void preRegister() {
+		setRegisterDate(LocalDateTime.now());
+	}
 
 }
