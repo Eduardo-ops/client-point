@@ -30,12 +30,12 @@ public class Customer {
 	private Integer id;
 
 	@Column(nullable = false, length = 150)
-	@NotEmpty
-	@CPF
+	@NotEmpty(message = "{mandatory.name.field}")
 	private String name;
 
 	@Column(nullable = false, length = 11)
-	@NotNull
+	@NotNull(message = "{mandatory.cpf.field}")
+	@CPF(message = "{invalid.cfp.field}")
 	private String cpf;
 
 	@Column(name = "register_date", updatable = false)
