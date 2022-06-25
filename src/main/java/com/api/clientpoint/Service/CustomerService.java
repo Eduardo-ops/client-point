@@ -22,7 +22,8 @@ public class CustomerService {
 	}
 
 	public Customer findById(Integer id) {
-		return customerRepository.findById(id).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+		return customerRepository.findById(id)
+				.orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
 	}
 
 	public Customer createCustomer(Customer customer) {
