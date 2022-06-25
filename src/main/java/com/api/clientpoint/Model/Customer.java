@@ -1,6 +1,5 @@
 package com.api.clientpoint.Model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.Column;
@@ -9,6 +8,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,7 +31,8 @@ public class Customer {
 	@Column(nullable = false, length = 11)
 	private String cpf;
 
-	@Column(name = "register_date")
+	@Column(name = "register_date", updatable = false)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	private LocalDateTime registerDate;
 
 	@PrePersist
