@@ -45,7 +45,7 @@ public class CustomerController {
 
 	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public Customer updateCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
+	public Customer updateCustomer(@Valid @PathVariable Integer id, @RequestBody Customer customer) {
 		return customerService.updateCustomer(id, customer);
 	}
 
