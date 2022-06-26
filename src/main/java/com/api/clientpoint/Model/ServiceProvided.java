@@ -10,11 +10,15 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-public class Service {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ServiceProvided {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
