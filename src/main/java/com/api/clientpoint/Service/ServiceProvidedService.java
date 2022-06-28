@@ -28,4 +28,17 @@ public class ServiceProvidedService {
 	public ServiceProvided createServiceProvided(ServiceProvided serviceProvided) {
 		return serviceProvidedRepository.save(serviceProvided);
 	}
+
+	public ServiceProvided updateServiceProvided(Integer id, ServiceProvided serviceProvided) {
+		return serviceProvidedRepository.findById(id).map(serviceProvidedObject -> {
+			serviceProvidedObject.setDescription(serviceProvided.getDescription());
+			serviceProvidedObject.setPrice(serviceProvided.getPrice());
+			ServiceProvided update = serviceProvidedRepository.save(serviceProvidedObject);
+			return serviceProvidedObject;
+		}).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+	}
+
+	public void deleteServiceProvided(ServiceProvided serviceProvided) {
+		serviceProvidedRepository.delete(serviceProvided);
+	}
 }
