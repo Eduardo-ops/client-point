@@ -2,6 +2,8 @@ package com.api.clientpoint.Controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,13 +39,13 @@ public class ServiceProvidedController {
 
 	@PostMapping()
 	@ResponseStatus(HttpStatus.CREATED)
-	public ServiceProvided createServiceProvided(@RequestBody ServiceProvided serviceProvided) {
+	public ServiceProvided createServiceProvided(@Valid @RequestBody ServiceProvided serviceProvided) {
 		return serviceProvidedService.createServiceProvided(serviceProvided);
 	}
 
 	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public ServiceProvided updateServiceProvided(@PathVariable Integer id,
+	public ServiceProvided updateServiceProvided(@Valid @PathVariable Integer id,
 			@RequestBody ServiceProvided serviceProvided) {
 		return serviceProvidedService.updateServiceProvided(id, serviceProvided);
 	}
