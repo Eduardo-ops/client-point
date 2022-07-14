@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,10 +33,10 @@ public class ServiceProvided {
 
 	@ManyToOne
 	@JoinColumn(name = "id_customer")
-	@NotEmpty(message = "{mandatory.customer.field}")
+//	@Size(message = "{mandatory.customer.field}")
 	private Customer customer;
 
-	@Column()
+	@Column(nullable = false, length = 999999999)
 	@NotNull(message = "{mandatory.price.field}")
 	private BigDecimal price;
 }
