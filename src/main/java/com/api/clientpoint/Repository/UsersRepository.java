@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.api.clientpoint.Model.Users;
 
-@Repository
-public interface UserRepository extends JpaRepository<Users, Integer> {
+import java.util.Optional;
 
+@Repository
+public interface UsersRepository extends JpaRepository<Users, Integer> {
+    Optional<Users> findByUsername(String username);
 }

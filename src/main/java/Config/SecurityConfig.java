@@ -1,5 +1,7 @@
 package Config;
 
+import com.api.clientpoint.Service.UsersService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,9 +15,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private UsersService usersService;
+
     @Override
     public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {
-
+        authenticationManagerBuilder
+                .userDetailsService(usersService)
+                .passwordEncoder(passwordEncoder());
     }
 
     @Bean
